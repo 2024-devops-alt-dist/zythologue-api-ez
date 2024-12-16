@@ -1,0 +1,30 @@
+{
+  "name": "beer-api",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npx tsc"
+  },
+  "keywords": [
+    "api",
+    "express"
+  ],
+  "author": "elena",
+  "license": "ISC",
+  "description": "On vise à créer une API REST, à la fois simple et performante, qui va nous permettre de manipuler les informations sur les bières avec des opérations de base comme créer, lire, mettre à jour, et supprimer (les fameuses opérations CRUD).",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.1",
+    "@types/pg": "^8.11.10",
+    "nodemon": "^3.1.7",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  }
+}
