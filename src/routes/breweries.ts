@@ -2,6 +2,7 @@ import { Router } from "express";
 export const router = Router();
 
 import { breweriesController } from "../controllers/breweries";
+import { beersController } from "../controllers/beers";
 
 /**
  * @swagger
@@ -75,6 +76,36 @@ router.get("/", breweriesController.getAll);
  *         description: Brewery not found
  */
 router.get("/:id", breweriesController.getOne);
+
+/**
+ * @swagger
+ * /breweries/{id}/beers:
+ *   get:
+ *     summary: Get all beers for a specific brewery
+ *     tags: [Breweries, Beers]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID of the brewery
+ *     responses:
+ *       200:
+ *         description: A list of beers for the brewery
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 beers:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Beer'
+ *       404:
+ *         description: No beers found for the specified brewery
+ */
+router.get("/:id/beers", beersController.getByBrewery);
 
 /**
  * @swagger

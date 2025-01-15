@@ -34,6 +34,23 @@ export const beersController = {
             res.status(500).json({ error: `Error while getting beer ${id}` });
         }
     },
+    getByBrewery: async (req: Request, res: Response): Promise<void> => {
+        const { id } = req.params;
+        try {
+            const result = await pool.query(
+                "SELECT * FROM beer WHERE id_brewery = $1", [id]);
+
+            if (result.rows.length === 0) {
+                res.status(404).json({ error: `No beers found for brewery ${id}` });
+                return;
+            }
+
+            res.status(200).json({ beers: result.rows });
+        } catch (error) {
+            console.error(`Error while getting beers for brewery ${id}`, error);
+            res.status(500).json({ error: `Error while getting beers for brewery ${id}` });
+        }
+    },
     post: async (req: Request, res: Response): Promise<void> => {
         const { name, description, abv, organic, id_category, id_brewery }: Beer = req.body;
 
