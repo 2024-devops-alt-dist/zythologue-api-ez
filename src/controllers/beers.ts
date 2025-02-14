@@ -54,7 +54,7 @@ export const beersController = {
     post: async (req: Request, res: Response): Promise<void> => {
         const { name, description, abv, organic, id_category, id_brewery }: Beer = req.body;
 
-        if (!name || !description || !abv || !organic || !id_category || !id_brewery) {
+        if (!name || !description || abv === undefined || organic === null || organic === undefined || !id_category || !id_brewery) {
             res.status(400).json({ error: "All fields are required" });
             return;
         }
